@@ -1,11 +1,11 @@
 const express = require("express");
-const path = require("path");
-const PORT = process.env.PORT || 3001;
+const mongoose = require("mongoose");
+// const PORT = process.env.PORT || 3001;
 const app = express();
 const server = require ('http').createServer(app);
 const io = require('socket.io')(server);
-io.on('connection',() => {/*...*/});
-server.listen(3000);
+// io.on('connection',() => {/*...*/});
+// server.listen(3000);
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -19,10 +19,12 @@ if (process.env.NODE_ENV === "production") {
 
 // Send every other request to the React app
 // Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Google-Book-Search");
 
-app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
-});
+io.on('connection',() => {/*...*/});
+server.listen(3000);
+
+
+// app.listen(PORT, () => {
+//   console.log(`🌎 ==> API server now on port ${PORT}!`);
+// });

@@ -9,7 +9,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 function Books() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
-  const [formObject, setFormObject] = useState({})
+  const [formObject] = useState({})
 
   // Load all books and store them with setBooks
   useEffect(() => {
@@ -31,7 +31,7 @@ function Books() {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>What Books to Read</h1>
             </Jumbotron>
             <form>
               <Input
