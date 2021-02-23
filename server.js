@@ -1,9 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const PORT = process.env.PORT || 3001;
+const routes = require("./routes");
+const PORT = process.env.PORT || 3001;
 const app = express();
-const server = require ('http').createServer(app);
-const io = require('socket.io')(server);
+// const server = require ('http').createServer(app);
+// const io = require('socket.io')(server);
 // io.on('connection',() => {/*...*/});
 // server.listen(3000);
 
@@ -15,16 +16,16 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Define API routes here
+app.use(routes)
 
 // Send every other request to the React app
 // Define any API routes before this runs
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Google-Book-Search");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/google-book-search");
 
-io.on('connection',() => {/*...*/});
-server.listen(3000);
+// io.on('connection',() => {/*...*/});
+// server.listen(3000);
 
 
-// app.listen(PORT, () => {
-//   console.log(`🌎 ==> API server now on port ${PORT}!`);
-// });
+app.listen(PORT, () => {
+  console.log(`🌎 ==> API server now on port ${PORT}!`);
+});
