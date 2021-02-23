@@ -2,6 +2,10 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const server = require ('http').createServer(app);
+const io = require('socket.io')(server);
+io.on('connection',() => {/*...*/});
+server.listen(3000);
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
